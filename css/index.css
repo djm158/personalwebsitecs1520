@@ -1,0 +1,59 @@
+html {
+  box-sizing: border-box;
+}
+
+#name {
+  padding: 30px;
+  margin: 0 auto;
+}
+
+footer {
+  text-align: center;
+}
+
+main {
+  height: 90vh;
+  background-color: #e1e4ea;
+}
+
+.navbar {
+  margin-bottom: 0 !important; /* bootstrap is annoying */
+}
+
+section {
+  height: 90vh;
+  max-height: 90vh;
+}
+
+.right {
+  width: 50%;
+  position: absolute;
+  right: 0px;
+  height: auto; 
+}
+
+.left {
+   width: 50%;
+   position: absolute;
+   left: 0px;
+   height: auto;
+}
+
+.content {
+  padding-left:  10px;
+  padding-right: 10px;
+  text-align: "justify";
+}
+
+#about-me {
+  margin: 0 auto;
+}
+
+#about-me h3 {
+  margin: 0 auto;
+}
+
+#guitar {
+  height: 100%;
+  width: 100%;
+}

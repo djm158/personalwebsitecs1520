@@ -1,0 +1,40 @@
+h1 {
+  margin: 0 auto;
+}
+body {
+  margin: 0;
+}
+main {
+  height: 100vh;
+  /*background-image: url("../images/print-background.jpg")*/
+}
+
+#name-tag {
+  height: 60px;
+  width: 200px;
+  margin-left: 100px;
+  margin-top: 80px;
+  position: absolute;
+  border-radius: 10px;
+}
+
+#name-tag h2 {
+  text-align: center;
+  /*color: #3F3FBF;*/
+  font-family: 'Open Sans', sans-serif;
+}
+
+.main-content {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 10px 100px;
+  text-align: left;
+  display: block;
+  padding: 100px 100px;
+  overflow: auto;
+}
+
+.main-content h1 {
+  font-size: 60px;
+  font-family: 'Open Sans', sans-serif;
+}
