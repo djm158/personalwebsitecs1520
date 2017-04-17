@@ -137,21 +137,19 @@
       </div>
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
-          <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-          <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-          <form data-toggle="validator" role="form">
+          <form data-toggle="validator" role="form" action="index.php" method="post">
             <div class="form-group">
               <label for="inputName" class="control-label">Name</label>
-              <input type="text" class="form-control" id="inputName" placeholder="Your name" required>
+              <input name="name" type="text" class="form-control" id="inputName" placeholder="Your name" required>
             </div>
             <div class="form-group">
               <label for="inputEmail" class="control-label">Email</label>
-              <input type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
+              <input name="email" type="email" class="form-control" id="inputEmail" placeholder="Email" data-error="Bruh, that email address is invalid" required>
               <div class="help-block with-errors"></div>
             </div>
             <div class="form-group">
               <label for="message" class="control-label">Message</label>
-              <textarea rows="5" class="form-control" placeholder="Write me a message" id="message"></textarea>
+              <textarea name="message" rows="5" class="form-control" placeholder="Write me a message" id="message"></textarea>
             </div>
             <div class="form-group">
               <button type="submit" class="btn btn-primary">Submit</button>
@@ -198,5 +196,56 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
   </body>
+<?php
+  error_reporting(E_ALL);
+  ini_set('display_errors', 1);
+  $name =  $_POST["name"];
+  $email = $_POST["email"];
+  $message = $_POST["message"];
+
+  $connection = mysqli_connect("localhost", "root", "mcgrad123$");
+
+  $create_db = "CREATE DATABASE IF NOT EXISTS USER_DATA";
+
+  mysqli_query($connection, $create_db);
+
+  mysqli_select_db($connection, 'USER_DATA');
+
+  $create_table = "CREATE TABLE Users (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(30) NOT NULL,
+    email VARCHAR(50),
+    message VARCHAR(1000)
+)";
+
+  mysqli_query($connection, $create_table);
+
+  $insert_data = "INSERT INTO Users (name, email, message)
+  VALUES ('$name', '$email', '$message')";
+
+  if(mysqli_query($connection, $insert_data)) {
+    $last_id = mysqli_insert_id($connection);
+    echo "New record created at " . $last_id;
+  }
+  else {
+    echo "Error: " . $connection->error;
+  }
+
+  $get_all_data = "SELECT * FROM Users";
+
+  if($results = mysqli_query($connection, $get_all_data)) {
+    $data = mysqli_fetch_assoc($results);
+
+    foreach($data as &$value) {
+      echo $value;
+    }
+
+    $results->close();
+  }
+  mysqli_close($connection);
+
+
+
+ ?>
 
   </html>
