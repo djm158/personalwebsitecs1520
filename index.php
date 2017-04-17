@@ -224,24 +224,24 @@
   VALUES ('$name', '$email', '$message')";
 
   if(mysqli_query($connection, $insert_data)) {
-    $last_id = mysqli_insert_id($connection);
-    echo "New record created at " . $last_id;
+    //$last_id = mysqli_insert_id($connection);
+    //echo "New record created at " . $last_id;
   }
   else {
     echo "Error: " . $connection->error;
   }
 
-  $get_all_data = "SELECT * FROM Users";
+  //$get_all_data = "SELECT * FROM Users";
 
-  if($results = mysqli_query($connection, $get_all_data)) {
-    $data = mysqli_fetch_assoc($results);
+  //if($results = mysqli_query($connection, $get_all_data)) {
+    //$data = mysqli_fetch_assoc($results);
 
-    foreach($data as &$value) {
-      echo $value;
-    }
+    //foreach($data as &$value) {
+      //echo $value;
+    //}
 
-    $results->close();
-  }
+    //$results->close();
+  //}
   mysqli_close($connection);
 
 
